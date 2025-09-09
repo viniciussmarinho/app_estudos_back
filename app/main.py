@@ -1,12 +1,13 @@
+# app/main.py
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from .config import settings
-from .database import engine
-from .models import user, subject, note, calendar_event
-from .api import auth
+from .database import engine, Base
+from .models import user, subject, note, calendar_event, password_reset
+from .api import auth, subjects, notes, calendar
 
 # Criar tabelas
-user.Base.metadata.create_all(bind=engine)
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title=settings.app_name,
@@ -17,14 +18,17 @@ app = FastAPI(
 # Configurar CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.frontend_url],
+    allow_origins=[settings.frontend_url, "http://localhost:3000"],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allow_headers=["*"],
 )
 
 # Incluir routers
 app.include_router(auth.router, prefix="/api/auth", tags=["Authentication"])
+app.include_router(subjects.router, prefix="/api/subjects", tags=["Subjects"])
+app.include_router(notes.router, prefix="/api/notes", tags=["Notes"])
+app.include_router(calendar.router, prefix="/api/calendar", tags=["Calendar"])
 
 @app.get("/")
 async def root():
@@ -32,4 +36,4 @@ async def root():
 
 @app.get("/health")
 async def health_check():
-    return {"status": "healthy"}
+    return {"status": "healthy", "version": "1.0.0"}
