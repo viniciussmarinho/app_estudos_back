@@ -1,0 +1,87 @@
+venv/
+.venv/
+env/
+.env/
+venv.bak/
+.env.bak/
+Arquivos de Cache e Compilados do Python
+Ignora arquivos de cache gerados pelo Python.
+
+pycache/
+*.pyc
+*.pyo
+*.pyd
+Arquivos de Configuração Sensíveis
+NUNCA envie suas variáveis de ambiente para o repositório.
+
+.env
+Arquivos de Banco de Dados
+Se você usar um banco de dados local como SQLite.
+
+*.sqlite3
+*.db
+Arquivos de Teste
+Ignora caches e relatórios de ferramentas de teste.
+
+.pytest_cache/
+.coverage
+htmlcov/
+Artefatos de Pacotes Python
+Ignora arquivos gerados ao construir pacotes.
+
+dist/
+build/
+*.egg-info/
+=== Frontend (React / Create React App) ===
+Dependências
+A pasta node_modules contém todas as bibliotecas e não deve ser versionada.
+Ela é recriada com 'npm install'.
+
+node_modules/
+Arquivos de Build
+Pasta com os arquivos finais para produção, gerada com 'npm run build'.
+
+build/
+Logs de Erro e Debug
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+Arquivos de Configuração Sensíveis do Frontend
+NUNCA envie variáveis de ambiente locais.
+
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+Arquivos do Yarn 2+ (Plug'n'Play)
+
+.pnp/
+.pnp.js
+=== Arquivos de IDEs e Editores ===
+Visual Studio Code
+
+.vscode/
+Descomente a linha abaixo se quiser compartilhar algumas configurações,
+mas mantendo as configurações locais do usuário ignoradas.
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+JetBrains (PyCharm, WebStorm, etc.)
+
+.idea/
+Vim
+
+*.swp
+*.swo
+=== Arquivos de Sistema Operacional ===
+macOS
+
+.DS_Store
+.AppleDouble
+.LSOverride
+Windows
+
+Thumbs.db
+ehthumbs.db
+Desktop.ini
