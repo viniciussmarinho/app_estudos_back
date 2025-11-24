@@ -25,10 +25,23 @@ class Settings(BaseSettings):
     app_name: str = "StudyApp API"
     debug: bool = True
     
+    # AI APIs
+    groq_api_key: str = ""
+    openai_api_key: str = ""
+    
     # Password Reset
     password_reset_token_expire_minutes: int = 30
     
     class Config:
         env_file = ".env"
+        case_sensitive = False
 
 settings = Settings()
+
+# Debug apenas se necessário
+if settings.debug:
+    print("Configurações carregadas")
+    if settings.groq_api_key:
+        print(f"GROQ API Key configurada: {settings.groq_api_key[:10]}...")
+    else:
+        print("GROQ API Key não encontrada")
